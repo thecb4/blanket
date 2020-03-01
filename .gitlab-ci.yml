@@ -1,0 +1,42 @@
+# Author: Cavelle Benjamin
+
+variables:
+  DOMAIN: "thecb4.io"
+  EMAIL: "cavelle@thecb4.io"
+
+stages:
+  - build-test
+  - docs
+
+spm_514_xenial:
+  image:
+    name: swift:5.1.4-xenial
+    entrypoint: [""]
+  stage: build-test
+  script:
+    - swift package update
+    - swift test --generate-linuxmain
+    - swift test --enable-code-coverage --filter "^(?!.*MacOS).*$"
+  only:
+    - master
+
+pages:
+  image:
+    name: swift:5.1.4-xenial
+  stage: docs
+  dependencies:
+    - spm_514_xenial
+  script:
+    - export WORKDIR=$PWD
+    - git clone https://github.com/yonaskolb/Mint.git /tmp/Mint
+    - cd /tmp/Mint
+    - swift run mint install yonaskolb/mint
+    - cd $WORKDIR
+    - mint run thecb4/swift-doc@master swift-doc ./Sources --type html --output Documentation
+    - mkdir public
+    - mv Documentation/documentation.html public/index.html
+  artifacts:
+    paths:
+    - public
+  only:
+    - master

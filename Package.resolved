@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
+        "state": {
+          "branch": "master",
+          "revision": "8d952c8513a1b1d215c4cf821c0309abb5cf5966",
+          "version": null
+        }
+      },
+      {
+        "package": "TextTable",
+        "repositoryURL": "https://github.com/cfilipov/TextTable.git",
+        "state": {
+          "branch": "master",
+          "revision": "e03289289155b4e7aa565e32862f9cb42140596a",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
