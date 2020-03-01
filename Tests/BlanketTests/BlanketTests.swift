@@ -20,7 +20,7 @@ final class BlanketTests: XCTestCase {
   var process: Process!
   var launched = false
   
-  func configureProcess(arguments: [String], environment: [String: String] = [:]) {
+  func configureProcess(arguments: [String], environment: [String: String] = [:]) throws {
     process = Process()
     let fooBinary = productsDirectory.appendingPathComponent("blanket")
     process.executableURL = fooBinary
@@ -29,7 +29,7 @@ final class BlanketTests: XCTestCase {
     process.environment = environment.merging(ProcessInfo.processInfo.environment) { (current, _) in current }
   }
   
-  func run(capturingOutput: Bool = true) -> (Data, Data) {
+  func run(capturingOutput: Bool = true) throws -> (Data, Data) {
     let out = Pipe()
     var outData = Data()
     
@@ -40,8 +40,8 @@ final class BlanketTests: XCTestCase {
       process.standardOutput = out
       process.standardError  = err
     }
-    BlanketTests.serialQueue.sync {
-      process.launch()
+    try BlanketTests.serialQueue.sync {
+      try process.run()
       launched = true
     }
     if capturingOutput {
@@ -57,7 +57,6 @@ final class BlanketTests: XCTestCase {
     BlanketTests.serialQueue.sync {
       if launched {
         process.terminate()
-        process = nil
       }
     }
   }
@@ -67,9 +66,9 @@ final class BlanketTests: XCTestCase {
     // Use XCTAssert and related functions to verify your tests produce the correct
     // results.
     
-    configureProcess(arguments: [])
+    try configureProcess(arguments: [])
     
-    let (outData, errData) = run()
+    let (outData, errData) = try run()
 
     guard let outString = String(data: outData, encoding: .utf8) else { return }
     guard let errString = String(data: errData, encoding: .utf8) else { return }
@@ -100,9 +99,9 @@ final class BlanketTests: XCTestCase {
   
   func testBlanketSimpleArgs() throws {
     
-    configureProcess(arguments: ["--source-path", "Sources", "--coverage-file", ".build/debug/codecov/SpecialProject.json"])
+    try configureProcess(arguments: ["--source-path", "Sources", "--coverage-file", ".build/debug/codecov/SpecialProject.json"])
     
-    let (outData, errData) = run()
+    let (outData, errData) = try run()
 
     guard let outString = String(data: outData, encoding: .utf8) else { return }
     guard let errString = String(data: errData, encoding: .utf8) else { return }
