@@ -35,7 +35,7 @@ extension Blanket {
      file: "Total",
      regions: files.map { $0.summary.regions.count }.reduce(0, +),
      coveredRegions: files.map { $0.summary.regions.covered }.reduce(0, +),
-     regionCoverageRate: 100 * files.map { $0.summary.regions.covered }.reduce(0, +) / files.map { $0.summary.regions.covered }.reduce(0, +),
+     regionCoverageRate: 100 * files.map { $0.summary.regions.covered }.reduce(0, +) / files.map { $0.summary.regions.count }.reduce(0, +),
      functions: files.map { $0.summary.functions.count }.reduce(0, +),
      coveredFunctions: files.map { $0.summary.functions.covered }.reduce(0, +),
      functionCoverageRate: 100 * files.map { $0.summary.functions.covered }.reduce(0, +) / files.map { $0.summary.functions.count }.reduce(0, +),
