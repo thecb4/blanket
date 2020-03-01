@@ -89,7 +89,7 @@ swift test
 
 ## Documentation
 
-
+Documentation can be found [here](https://thecb4.gitlab.io/blanket/)
 
 ## Roadmap and Contributing
 
