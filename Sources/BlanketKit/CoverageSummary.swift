@@ -29,8 +29,25 @@ extension Blanket {
   }
 
   public var summary: [SummaryItem] {
-    files.map { $0.summaryItem }
+    var _summary: [SummaryItem] = files.map { $0.summaryItem }
+    
+    _summary += [SummaryItem(
+     file: "Total",
+     regions: files.map { $0.summary.regions.count }.reduce(0, +),
+     coveredRegions: files.map { $0.summary.regions.covered }.reduce(0, +),
+     regionCoverageRate: 100 * files.map { $0.summary.regions.covered }.reduce(0, +) / files.map { $0.summary.regions.covered }.reduce(0, +),
+     functions: files.map { $0.summary.functions.count }.reduce(0, +),
+     coveredFunctions: files.map { $0.summary.functions.covered }.reduce(0, +),
+     functionCoverageRate: 100 * files.map { $0.summary.functions.covered }.reduce(0, +) / files.map { $0.summary.functions.count }.reduce(0, +),
+     lines: files.map { $0.summary.lines.count }.reduce(0, +),
+     coveredLines: files.map { $0.summary.lines.covered }.reduce(0, +),
+     coveredLinesRate: 100 * files.map { $0.summary.lines.covered }.reduce(0, +) / files.map { $0.summary.lines.count }.reduce(0, +)
+    )]
+    
+    return _summary
+
   }
+  
 }
 
 extension File {
