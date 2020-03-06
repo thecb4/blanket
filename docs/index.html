@@ -1,0 +1,1211 @@
+
+<html lang="en-US">
+	<!-- Generated on: 2020-03-06 20:12:22 +0000 -->
+	<head>
+		<title>
+			Documentation
+		</title>
+		<meta charset="utf-8" content="text/html" http-equiv="Content-Type"/>
+		<meta content="Documentation" name="description"/>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+		<meta content="Cavelle Benjamin (@_thecb4)" name="author"/>
+		<meta content="swift,html,dsl" name="keywords"/>
+		<style>
+			/* https://css-tricks.com/sticky-smooth-active-nav/ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  font-family: system-ui, sans-serif;
+  
+  /* this breaks position sticky in Firefox */
+  /* overflow-x: hidden; */
+}
+
+.heading {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  background: #139ed8;
+}
+
+nav {
+  white-space: nowrap;
+  background: #37474F;
+  padding: 10px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Only stick if you can fit */
+@media (min-height: 300px) {
+  nav ul {
+    position: sticky;
+    top: 0;
+  }
+}
+
+nav ul li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li a.current {
+  background: black;
+}
+
+main {
+  padding-bottom: 40rem;
+}
+
+section {
+  padding: 2rem;
+  margin: 0 0 2rem 0;
+}
+
+footer {
+  grid-column: 1 / 4;
+  background: #607D8B;
+  padding: 2rem 1rem;
+}
+
+		</style>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li>
+					<h1>
+						Blanket
+					</h1>
+				</li>
+				<li>
+					<h1>
+						<a href="#readme">README</a>
+					</h1>
+				</li>
+				<li>
+					<h1>
+						Types
+					</h1>
+					<ul>
+						<li>
+							<a href="#Blanket">Blanket</a>
+						</li>
+						<li>
+							<a href="#CLI">CLI</a>
+						</li>
+						<li>
+							<a href="#Blanket.Blanket.Datum">Blanket.Blanket.Datum</a>
+						</li>
+						<li>
+							<a href="#Blanket.Blanket.Datum.File">Blanket.Blanket.Datum.File</a>
+						</li>
+						<li>
+							<a href="#Blanket.Blanket.Datum.File.Segment.Totals.Functions.Function">Blanket.Blanket.Datum.File.Segment.Totals.Functions.Function</a>
+						</li>
+						<li>
+							<a href="#Blanket.Blanket.Datum.File.Segment.Totals.Functions">Blanket.Blanket.Datum.File.Segment.Totals.Functions</a>
+						</li>
+						<li>
+							<a href="#Blanket.Blanket.Datum.File.Segment">Blanket.Blanket.Datum.File.Segment</a>
+						</li>
+						<li>
+							<a href="#SummaryItem">SummaryItem</a>
+						</li>
+						<li>
+							<a href="#Blanket.Blanket.Datum.File.Segment.Totals">Blanket.Blanket.Datum.File.Segment.Totals</a>
+						</li>
+						<li>
+							<a href="#Transformer">Transformer</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<main>
+			<section id="readme">
+				<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2>Display Code Coverage data in a lovely format</h2>
+<h2>License</h2>
+<p>This project is licensed under the MIT License - see the <a href="LICENSE.md">LICENSE.md</a> file for details</p>
+<h2>Getting Started</h2>
+<p>These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.</p>
+<h2>Built With</h2>
+<ul>
+<li><a href="https://github.com/cfilipov/TextTable">TextTable</a> - TextTable</li>
+<li><a href="https://github.com/apple/swift-argument-parser">ArgumentParser</a> - Swift Argument Parser</li>
+</ul>
+<h3>Prerequisites</h3>
+<p>Swift 5.1</p>
+<h3>Installing</h3>
+<p>Package Manager</p>
+<pre><code>.package(url: &quot;https://gitlab.com/thecb4/blanket.git&quot;, .branch(&quot;master&quot;))
+</code></pre>
+<h2>Using</h2>
+<p>using this is very straight forward</p>
+<p>with mint</p>
+<pre><code class="language-swift">mint run https://gitlab.com/thecb4/blanket blanket
+</code></pre>
+<p>after the initial run</p>
+<pre><code class="language-swift">mint run blanket
+</code></pre>
+<p>And results look like</p>
+<pre><code class="language-shell">🌱  Finding latest version of blanket
+🌱  blanket 0.1.1 already installed
+🌱  Running blanket 0.1.1...
+╒════════════════════════════════════════════╤═════════╤═════════════════╤════════════╤═══════════╤═══════════════════╤════════════╤═══════╤═══════════════╤════════════╕
+│ File                                       │ Regions │ Region Coverage │ Coverage % │ Functions │ Function Coverage │ Coverage % │ Lines │ Line Coverage │ Coverage % │
+╞════════════════════════════════════════════╪═════════╪═════════════════╪════════════╪═══════════╪═══════════════════╪════════════╪═══════╪═══════════════╪════════════╡
+│ Sources/BlanketCLI/CLI.swift               │      14 │              11 │         78 │        10 │                 9 │         90 │    40 │            37 │         92 │
+├────────────────────────────────────────────┼─────────┼─────────────────┼────────────┼───────────┼───────────────────┼────────────┼───────┼───────────────┼────────────┤
+│ Sources/BlanketKit/Blanket.swift           │     147 │               6 │          4 │        29 │                 3 │         10 │   274 │            26 │          9 │
+├────────────────────────────────────────────┼─────────┼─────────────────┼────────────┼───────────┼───────────────────┼────────────┼───────┼───────────────┼────────────┤
+│ Sources/BlanketKit/CoverageSummary.swift   │       8 │               8 │        100 │         8 │                 8 │        100 │    25 │            25 │        100 │
+├────────────────────────────────────────────┼─────────┼─────────────────┼────────────┼───────────┼───────────────────┼────────────┼───────┼───────────────┼────────────┤
+│ Sources/BlanketKit/String+Extensions.swift │       5 │               4 │         80 │         1 │                 1 │        100 │    10 │            10 │        100 │
+├────────────────────────────────────────────┼─────────┼─────────────────┼────────────┼───────────┼───────────────────┼────────────┼───────┼───────────────┼────────────┤
+│ Sources/BlanketKit/Transformer.swift       │      13 │              13 │        100 │        13 │                13 │        100 │    43 │            43 │        100 │
+├────────────────────────────────────────────┼─────────┼─────────────────┼────────────┼───────────┼───────────────────┼────────────┼───────┼───────────────┼────────────┤
+│ Total                                      │     187 │              42 │        100 │        61 │                34 │         55 │   392 │           141 │         35 │
+╘════════════════════════════════════════════╧═════════╧═════════════════╧════════════╧═══════════╧═══════════════════╧════════════╧═══════╧═══════════════╧════════════╛
+</code></pre>
+<h3>Break down into end to end tests</h3>
+<p>Explain what these tests test and why</p>
+<pre><code>swift test
+</code></pre>
+<h2>Documentation</h2>
+<p>Documentation can be found <a href="https://thecb4.gitlab.io/blanket/">here</a></p>
+<h2>Roadmap and Contributing</h2>
+<h3>Versioning</h3>
+<p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available, see the <a href="https://github.com/your/project/tags">tags on this repository</a>.</p>
+<h3>Roadmap</h3>
+<p>Please read <a href="ROADMAP.md">ROADMAP</a> for an outline of how we would like to evolve the library.</p>
+<h3>Contributing</h3>
+<p>Please read <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> for details on our code of conduct, and the process for changes to us.</p>
+<h3>Changes</h3>
+<p>Please read <a href="CHANGELOG.md">CHANGELOG</a> for details on changes to the library.</p>
+<h2>Authors</h2>
+<ul>
+<li><strong>'Cavelle Benjamin'</strong> - <em>Initial work</em> - <a href="https://thecb4.io">thecb4</a></li>
+</ul>
+<h2>Acknowledgments</h2>
+<ul>
+<li>icon made by <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a> from <a href="https://www.flaticon.com">Flaticon</a></li>
+<li>Docs generated by <a href="https://github.com/thecb4/swift-doc">swift-doc</a> originally created by <a href="https://github.com/mattt">mattt</a></li>
+</ul>
+
+			</section>
+			<section id="Blanket">
+				<h1>
+					Blanket
+				</h1>
+				<div>
+					
+					<pre>
+						<code class="swift">public struct Blanket: Codable, Hashable</code>
+					</pre>
+					
+					
+				</div>
+				<section>
+					<header>
+						<h2>
+							Inheritance
+						</h2>
+					</header>
+					<p>
+						`Codable`, `Hashable`
+					</p>
+				</section>
+				<section>
+					<header>
+						<h2>
+							Nested Types
+						</h2>
+					</header>
+					<p>
+						`Blanket.Blanket.Datum`, `Blanket.Blanket.Datum.File`, `Blanket.Blanket.Datum.File.Segment.Totals`, `Blanket.Blanket.Datum.File.Segment.Totals.Functions.Function`, `Blanket.Blanket.Datum.File.Segment`, `Blanket.Blanket.Datum.File.Segment.Totals.Functions`
+					</p>
+				</section>
+				<div>
+					<section>
+						<header>
+							<h2>
+								Enumeration Cases
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">case bool(: Bool)</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">case integer(: Int)</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+					<section>
+						<header>
+							<h2>
+								Initializers
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">public init(contentsOfFile path: String) throws</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">public init(from decoder: Decoder) throws</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+					<section>
+						<header>
+							<h2>
+								Methods
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">public func encode(to encoder: Encoder) throws</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+					<section>
+						<header>
+							<h2>
+								Properties
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">var summary: [SummaryItem]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let percent: Double</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let filename: String</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">var sourcePath = "Sources"</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let instantiations: Functions</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let name: String</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let version: String</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let expansions: [String]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let data: [Datum]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let functions: Functions</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let notcovered: Int?</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let count: Int</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let functions: [Function]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let covered: Int</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let files: [File]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let filenames: [String]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let regions: [[Int]]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let totals: Totals</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let type: String</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let lines: Functions</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let count: Int</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let summary: Totals</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let segments: [[Segment]]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let regions: Functions</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+				</div>
+			</section>
+			<section id="CLI">
+				<h1>
+					CLI
+				</h1>
+				<div>
+					
+					<pre>
+						<code class="swift">public struct CLI: ParsableCommand</code>
+					</pre>
+					
+					
+				</div>
+				<section>
+					<header>
+						<h2>
+							Inheritance
+						</h2>
+					</header>
+					<p>
+						`ParsableCommand`
+					</p>
+				</section>
+				<section>
+					<header>
+						<h2>
+							Nested Types
+						</h2>
+					</header>
+					<p>
+						
+					</p>
+				</section>
+				<div>
+					<section>
+						<header>
+							<h2>
+								Initializers
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">public init()</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+					<section>
+						<header>
+							<h2>
+								Methods
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">public func run() throws</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+					<section>
+						<header>
+							<h2>
+								Properties
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">var configuration = CommandConfiguration(
+    commandName: "blanket",
+    abstract: "Reports code coverage",
+    discussion:
+      """
+      Looks for the code coverage associated with the package
+      """
+  )</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+				</div>
+			</section>
+			<section id="Blanket.Blanket.Datum">
+				<h1>
+					Blanket.Blanket.Datum
+				</h1>
+				<div>
+					
+					<pre>
+						<code class="swift">public struct Datum: Codable, Hashable</code>
+					</pre>
+					
+					
+				</div>
+				<section>
+					<header>
+						<h2>
+							Inheritance
+						</h2>
+					</header>
+					<p>
+						`Codable`, `Hashable`
+					</p>
+				</section>
+				<section>
+					<header>
+						<h2>
+							Nested Types
+						</h2>
+					</header>
+					<p>
+						`Blanket.Blanket.Datum.File`
+					</p>
+				</section>
+				<div>
+					<section>
+						<header>
+							<h2>
+								Properties
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">let functions: [Function]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let totals: Totals</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let files: [File]</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+				</div>
+			</section>
+			<section id="Blanket.Blanket.Datum.File">
+				<h1>
+					Blanket.Blanket.Datum.File
+				</h1>
+				<div>
+					
+					<pre>
+						<code class="swift">public struct File: Codable, Hashable</code>
+					</pre>
+					
+					
+				</div>
+				<section>
+					<header>
+						<h2>
+							Inheritance
+						</h2>
+					</header>
+					<p>
+						`Codable`, `Hashable`
+					</p>
+				</section>
+				<section>
+					<header>
+						<h2>
+							Nested Types
+						</h2>
+					</header>
+					<p>
+						`Blanket.Blanket.Datum.File.Segment`
+					</p>
+				</section>
+				<div>
+					<section>
+						<header>
+							<h2>
+								Properties
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">let expansions: [String]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let filename: String</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let summary: Totals</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let segments: [[Segment]]</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+				</div>
+			</section>
+			<section id="Blanket.Blanket.Datum.File.Segment.Totals.Functions.Function">
+				<h1>
+					Blanket.Blanket.Datum.File.Segment.Totals.Functions.Function
+				</h1>
+				<div>
+					
+					<pre>
+						<code class="swift">public struct Function: Codable, Hashable</code>
+					</pre>
+					
+					
+				</div>
+				<section>
+					<header>
+						<h2>
+							Inheritance
+						</h2>
+					</header>
+					<p>
+						`Codable`, `Hashable`
+					</p>
+				</section>
+				<section>
+					<header>
+						<h2>
+							Nested Types
+						</h2>
+					</header>
+					<p>
+						
+					</p>
+				</section>
+				<div>
+					<section>
+						<header>
+							<h2>
+								Properties
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">let count: Int</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let name: String</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let regions: [[Int]]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let filenames: [String]</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+				</div>
+			</section>
+			<section id="Blanket.Blanket.Datum.File.Segment.Totals.Functions">
+				<h1>
+					Blanket.Blanket.Datum.File.Segment.Totals.Functions
+				</h1>
+				<div>
+					
+					<pre>
+						<code class="swift">public struct Functions: Codable, Hashable</code>
+					</pre>
+					
+					
+				</div>
+				<section>
+					<header>
+						<h2>
+							Inheritance
+						</h2>
+					</header>
+					<p>
+						`Codable`, `Hashable`
+					</p>
+				</section>
+				<section>
+					<header>
+						<h2>
+							Nested Types
+						</h2>
+					</header>
+					<p>
+						`Blanket.Blanket.Datum.File.Segment.Totals.Functions.Function`
+					</p>
+				</section>
+				<div>
+					<section>
+						<header>
+							<h2>
+								Properties
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">let count: Int</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let notcovered: Int?</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let covered: Int</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let percent: Double</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+				</div>
+			</section>
+			<section id="Blanket.Blanket.Datum.File.Segment">
+				<h1>
+					Blanket.Blanket.Datum.File.Segment
+				</h1>
+				<div>
+					
+					<pre>
+						<code class="swift">public enum Segment</code>
+					</pre>
+					
+					
+				</div>
+				<section>
+					<header>
+						<h2>
+							Inheritance
+						</h2>
+					</header>
+					<p>
+						`Codable`, `Hashable`
+					</p>
+				</section>
+				<section>
+					<header>
+						<h2>
+							Nested Types
+						</h2>
+					</header>
+					<p>
+						`Blanket.Blanket.Datum.File.Segment.Totals`
+					</p>
+				</section>
+				<div>
+					<section>
+						<header>
+							<h2>
+								Enumeration Cases
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">case bool(: Bool)</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">case integer(: Int)</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+					<section>
+						<header>
+							<h2>
+								Initializers
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">public init(from decoder: Decoder) throws</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+					<section>
+						<header>
+							<h2>
+								Methods
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">public func encode(to encoder: Encoder) throws</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+				</div>
+			</section>
+			<section id="SummaryItem">
+				<h1>
+					SummaryItem
+				</h1>
+				<div>
+					
+					<pre>
+						<code class="swift">public struct SummaryItem</code>
+					</pre>
+					
+					
+				</div>
+				<section>
+					<header>
+						<h2>
+							Inheritance
+						</h2>
+					</header>
+					<p>
+						
+					</p>
+				</section>
+				<section>
+					<header>
+						<h2>
+							Nested Types
+						</h2>
+					</header>
+					<p>
+						
+					</p>
+				</section>
+				<div>
+					<section>
+						<header>
+							<h2>
+								Properties
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">var summary: [SummaryItem]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">var sourcePath = "Sources"</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+				</div>
+			</section>
+			<section id="Blanket.Blanket.Datum.File.Segment.Totals">
+				<h1>
+					Blanket.Blanket.Datum.File.Segment.Totals
+				</h1>
+				<div>
+					
+					<pre>
+						<code class="swift">public struct Totals: Codable, Hashable</code>
+					</pre>
+					
+					
+				</div>
+				<section>
+					<header>
+						<h2>
+							Inheritance
+						</h2>
+					</header>
+					<p>
+						`Codable`, `Hashable`
+					</p>
+				</section>
+				<section>
+					<header>
+						<h2>
+							Nested Types
+						</h2>
+					</header>
+					<p>
+						`Blanket.Blanket.Datum.File.Segment.Totals.Functions`
+					</p>
+				</section>
+				<div>
+					<section>
+						<header>
+							<h2>
+								Properties
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">let lines: Functions</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let functions: Functions</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let instantiations: Functions</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let regions: Functions</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+				</div>
+			</section>
+			<section id="Transformer">
+				<h1>
+					Transformer
+				</h1>
+				<div>
+					
+					<pre>
+						<code class="swift">public struct Transformer</code>
+					</pre>
+					
+					
+				</div>
+				<section>
+					<header>
+						<h2>
+							Inheritance
+						</h2>
+					</header>
+					<p>
+						
+					</p>
+				</section>
+				<section>
+					<header>
+						<h2>
+							Nested Types
+						</h2>
+					</header>
+					<p>
+						
+					</p>
+				</section>
+				<div>
+					<section>
+						<header>
+							<h2>
+								Methods
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">public func fancyString<C: Collection>(for data: C) -> String? where C.Iterator.Element == T</code>
+							</pre>
+							
+							
+						</div>
+					</section>
+					<section>
+						<header>
+							<h2>
+								Properties
+							</h2>
+						</header>
+						<div>
+							
+							<pre>
+								<code class="swift">var textTable: TextTable<SummaryItem></code>
+							</pre>
+							
+							
+						</div>
+					</section>
+				</div>
+			</section>
+		</main>
+		<footer>
+			&copy; 2020. Generated by swift-doc on Friday, 2020-March-6 (10)
+		</footer>
+		<script type="text/javascript">
+			let mainNavLinks = document.querySelectorAll("nav ul li a");
+let mainSections = document.querySelectorAll("main section");
+
+let lastId;
+let cur = [];
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach(link => {
+    let section = document.querySelector(link.hash);
+
+    if (
+      section.offsetTop <= fromTop &&
+      section.offsetTop + section.offsetHeight > fromTop
+    ) {
+      link.classList.add("current");
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js">
+		</script>
+		<script type="text/javascript">
+			hljs.initHighlightingOnLoad();
+		</script>
+	</body>
+</html>

@@ -141,16 +141,6 @@ final class BlanketTests: XCTestCase {
     #endif
   }
   
-  var testURL: URL {
-    guard let fileURL = Bundle(for: type(of: self)).url(forResource: "Package", withExtension: "swift") else {
-      return URL(fileURLWithPath: "file:///")
-    }
-//    guard let fileURL = Bundle(for: type(of: self)).url(forResource: "Package" withExtension:"swift") else {
-//            fatalError("File not found")
-//    }
-    return fileURL
-  }
-  
   var fixturesURL: URL {
     URL(fileURLWithPath: #file)
     .deletingLastPathComponent()

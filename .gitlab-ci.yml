@@ -32,9 +32,11 @@ pages:
     - cd /tmp/Mint
     - swift run mint install yonaskolb/mint
     - cd $WORKDIR
-    - mint run thecb4/swift-doc@master swift-doc ./Sources --type html --output Documentation
+    - mint install thecb4/swift-doc@master
+    - swift doc ./Sources --type html --output docs --module-name Blanket
     - mkdir public
-    - mv Documentation/documentation.html public/index.html
+    - mv docs/index.html public/index.html
+    - mv Resources/logo.png public/Resoures/logo.png
   artifacts:
     paths:
     - public
