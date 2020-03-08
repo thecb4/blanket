@@ -1,106 +1,206 @@
 
 <html lang="en-US">
-	<!-- Generated on: 2020-03-06 20:12:22 +0000 -->
+	<!-- Generated on: 2020-03-08 18:04:34 +0000 -->
 	<head>
 		<title>
-			Documentation
+			blanket Documentation
 		</title>
 		<meta charset="utf-8" content="text/html" http-equiv="Content-Type"/>
-		<meta content="Documentation" name="description"/>
+		<meta content="blanket Documentation" name="description"/>
 		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-		<meta content="Cavelle Benjamin (@_thecb4)" name="author"/>
-		<meta content="swift,html,dsl" name="keywords"/>
+		<meta content="Cavelle Benjamin (_thecb4)" name="author"/>
+		<meta content="swift,package,docs" name="keywords"/>
 		<style>
-			/* https://css-tricks.com/sticky-smooth-active-nav/ */
+			/* https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties */
 
-html {
-  scroll-behavior: smooth;
+:root {
+  --main-header-height: 60px;
+  --main-footer-height: 60px;
+  --main-content-height: calc(
+      100vh - var(--main-header-height) - var(--main-footer-height)
+    );
+  --brand-icon-height: calc(var(--main-header-height) - 10px);
+  --social-icon-size: calc(var(--main-header-height) - 20px)
 }
 
-body {
-  margin: 0;
-  display: grid;
-  grid-template-columns: min-content 1fr;
-  font-family: system-ui, sans-serif;
-  
-  /* this breaks position sticky in Firefox */
-  /* overflow-x: hidden; */
+* {
+  box-sizing: border-box;
 }
 
-.heading {
-  width: 100%;
-  height: 60px;
-  position: fixed;
-  top: 0;
-  background: #139ed8;
+a {
+  color: grey;
 }
 
-nav {
-  white-space: nowrap;
-  background: #37474F;
-  padding: 10px;
-}
-
-nav ul {
-  list-style: none;
+html, body {
+  width: 100vw;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
 }
 
-/* Only stick if you can fit */
-@media (min-height: 300px) {
-  nav ul {
-    position: sticky;
-    top: 0;
-  }
+html {
+  scroll-behavior: smooth;
+}
+/* https://stackoverflow.com/questions/48107353/allow-one-grid-item-to-scroll-with-fixed-header-and-sidebar */
+body {
+  display: grid;
+  grid-template-rows: var(--main-header-height) var(--main-content-height);  /* height limitation on second row */
+  grid-template-columns: 25% 75%;
+  grid-template-areas: "header header"
+                       "nav   content"
+                       "footer footer";
+
+  font-family: Helvetica, freesans, Arial, sans-serif;
 }
 
-nav ul li a {
-  display: block;
-  padding: 0.5rem 1rem;
+header * {
+  display: inline;
+}
+
+header.brand {
+  grid-area: header;
+  position: sticky;
+  top: 0;
+  height: var(--main-header-height);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 25px 0 black;
+  background-color: #414141;
   color: white;
-  text-decoration: none;
+  font-family: sans-serif;
+  justify-content: space-between;
 }
 
-nav ul li a.current {
-  background: black;
+div.brand-lockup {
+  display: table;
+}
+
+/* https://stackoverflow.com/questions/13408394/how-to-vertically-align-both-image-and-text-in-a-div-using-css */
+
+img.brand-icon {
+  height: var(--brand-icon-height);
+  vertical-align: middle;
+  display: table-cell;
+}
+
+img.brand-icon-default {
+  height: 0px;
+  width: 0px;
+  border: 0px;
+  padding-left: var(--main-header-height);
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: calc(var(--main-header-height) + 10px);
+  background: url(data:image/png;base64,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) 0px/var(--brand-icon-height) no-repeat;
+}
+
+img.social-icon {
+  height: var(--social-icon-size)
+}
+
+/* reset image values */
+img[class*=" social-icon-"] {
+  height: 0px;
+  width: 0px;
+  border: 0px;
+  padding-left: var(--main-header-height);
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: calc(var(--main-header-height) + 10px);
+}
+
+img.social-icon-about {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAABmJLR0QA/wD/AP+gvaeTAAADfUlEQVRoge2aTagWVRiAnzesRZZEkoRF6cqKrkSWRRAZ0aKC1m0EoYUg0c+mbxHcIinat6gWQdvaFdxatEvqapmIipIUQZb2DyVpcu/n02I+4d75zozfz/zcG/PAbN4zc877zMwZzrwz0NHR0dGxcom6OlbXA/cB24EtwGbgZuBqYN1gt7+Bc8Ap4HvgG+BL4EBE/FlXbpWhblZ76rzad3L6gz566qa2vYZQn1A/mVKyTH5OfaxtT9RH1P01SBYxrz7chuj16jsNiub5QL2hKdmH1DMtyl7iV/XRumVfUBdbFl3Kgvp8XbK9tu1KeKNq2b1tG43Ay1XJPl1hUhfUF9WNg603iFXBRXXXtLIz6vmKElLtJcaocqqcU+8ocypcWqpXAoeAO6c6a8u5KSJO58bZCPxU4RiHgXsjYjHVeEXJgXuoVraIqtfzdwG7ixqTwuq1wGzFiQDsHDE2La+o14y8t/pMhfNqKRfM5mwdD608e1JuydtJPQ7cPtnJXTEci4iZfHBIWL0NONFISvWzJSJOLg2k5vDjDSXTBEMuKeFtDSTSFHfnAynhoft+FbM1H1iT2OnGOjOIiGXPDdUahxtySV3hdYnYauW6fCAlXFslswUu5gMp4bMNJNIUf+UDKeEfG0ikKX7OB1LC/5dFB8DRfCAlvL+BRJri63wgJfxpA4k0xVw+MCQcEceBI42kUy9HIuLbfLCoAPBuzck0wVupYNHr4Vqyr3mVV/cbWmn9DmyKiH/yDckrPNjx9RoSaYrZlCyUF/HWAF+R1Ygqo4ErfAjYHhH9VGNhEW9Q9dtJ9sF6tfAvsKtIFsqrlkTEMbLqZWXkC09Vdg3sjoihxcb4PelsTYW2Knlp+nO2XPq7to1KeHVUj9JbOsfhCc5T3SwCz0XEyDX0VMWjiJX28DoDPBURn41z0DhXeP14+dSGwHvAzLiyo4+gof7S9kRV96kPTuMy6i29A9gwzUBT0Ac+Bt6MiKnf5EYVfnaMPo8CfwAPAFeNnVFGH5gHPgLej4gfJuxniMsW7NQngQ9H6GuBbP39WkQsmH29u5+ssL8VuHWwrSWrjEpWPztLVla69OvhAbJfD4fqUbWj3qKeHmFuzamru4CvblBPXEb0c3VH27lWgnqwQPI39W31nrZznISyh9Z5st97TwEngYPAPuCLsreRjo6Ojo6OyfkPkRIVDCaRN0EAAAAASUVORK5CYII=) 0px/var(--social-icon-size) no-repeat;
+}
+img.social-icon-twitter {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAEQElEQVRoge2aS4wUVRSGvwPIgMRRVMBoTEgYQETRREESHi40IAuMCxeACxcu8EUEN+7cuiHxFUAT2BDjwsSNAQSiiQi+3Yjo8PSFRvEVDDHyks/FnR46TXV1VU3NMCZ8SSedqnPOPX9XV91zzy24xPAi6gqkjgfuBuYBNwNTgInAuD6Tv4FjwDfA18AeYFdEHK8rh8qoXepD6g71rOU5q76trlC7LoaAserT6k8Vkm/Hj+pqdcxQiViiHq5RQCuH1MWDKaBLfXEQBbSyWR1bt4hJ6udDKKLBp+rEukRMNl3ui8VBdXKnPHMfv+oEYDcwvZZfpTpHgPkR8Us7g7ZCTE+PPcAdg5BYFT4DFkTEqayTI3Icn2f4iACYDaxtdzLziqhLgG2DldEAWRwRO1sPXiDENMPuBaYNRVYVOAzcGhEnmw9m/bWeYPiKAOgBVuZamCa9OsuOVk6oz6l3qhPUHvUR9asWu73q8Zw4R82rzUwFYBG29X3KcEjtaTPuKPUFdb26SF1YIN7yPCE7Cib1oDpO3VnQ/h+10FykXq8eUb/vEDP7YaSOt3gpPqvPZ7S6oYD9uoIiRpqK0lvUNzvEPKN2ZwV5oKAI1Tktvver3+bYF65m+8SsK5jH0oZf81NrftHBaJkoI+ItYAbwGGn118rPJWJvAB4vaLug8aVZyE0lBntUHdV8ICJORsQrETETmAWsAV4HPgTKLJZmlrCdccERU5VZlONq23JhIJhu9KLsb/g1/6pXlxhvPnCjOjkivqtLRB/XlbC9pvGlWcgVJQLcHhGvlbAvhDoVuLyES3/OedVvHk+qVX3zqLxWb07mRAm/u4Bnqw6aw30l7S/MWT1Q4iZrsFGdVIcCdYrle2O9Df/mK3Kowvh/AEvVKwesBJ4BRpb06c+5WUhvhmEnuiNiY0T8VcG3H3Ua8HAF18wr8kGFQCvV/LVBB9TLgM3A6Aruu7MCXlXhP6r6r7rJAi2bNkLWVhhT9bRZRWNf0O0VgzZYb0vp0kHEmgGMtSUv8IqKQd81NSyKChhhWikOhGXNMaNlgC5SM+yGnDzeB74AfiM9Nd7La5xliOgBNgELi/pkcBToiYjTeQOt7vBLnFPfUOeWGVmdqr6snhrglVBd1Ro/qx00BviS1K3oRC+wFfgI2Af8SZpbuklF6HRgDmnGnps1XgUOALe1dhzbNegWA9trGLRuBBZFxDutJzILv4jYARRaZw8xL2WJgPwmdhdpwpk9WFmV5BNgYbsbvNO2wrWkjvxw2FaYFxHH2hnkriki4nfSjVqloKyLg8A9eSIKo040bYMNNR+bNpvqw/OboeeGSMSrDubeu6k3W6bjUpb96r2DJqBFTJf6lKkrXhc/qKu8SG9AdKnL1a2mXmxZzqhb1GVqlfVIP3W+VNNNeqlmAakD2ANM4HzL5gTwK2nHqZc0R+2KiDJNj0v8b/gPwyu522ohMo8AAAAASUVORK5CYII=) 0px/var(--social-icon-size) no-repeat;
+}
+img.social-icon-github {
+  background: url(data:image/png;base64,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) 0px/var(--social-icon-size) no-repeat;
+}
+span.brand {
+  vertical-align: middle;
+  display: table-cell;
+  padding: 10px;
+}
+
+nav.main-nav {
+  grid-area: nav;
+  padding: 5px;
+  background-color: #DDDDDD;
+  font-size: 14px;
+}
+
+nav.main-nav li {
+  margin: 10px 0;
 }
 
 main {
-  padding-bottom: 40rem;
+  grid-area: content;
+  overflow: auto;
+  padding: 1rem;
+  background-color: #F2F2F2;
+  background-size: cover;
+  font-family: sans-serif;
+  color: black;
 }
 
-section {
+.top-level-section {
   padding: 2rem;
   margin: 0 0 2rem 0;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 footer {
-  grid-column: 1 / 4;
-  background: #607D8B;
-  padding: 2rem 1rem;
+  grid-area: footer;
+  height: var(--main-footer-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #414141;
+  color: white;
+  font-family: sans-serif;
+  font-style: italic;
+  font-size: 12px;
 }
-
 		</style>
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css" rel="stylesheet"/>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/darcula.min.css" rel="stylesheet"/>
 	</head>
 	<body>
-		<nav>
+		<header class="brand">
+			<div class="brand-lockup">
+				<span class="brand"><a href="https://swift.org"><img alt class="brand-icon brand-icon-default" src/></a></span>
+				<span class="brand"><h1>
+						blanket
+					</h1></span>
+			</div>
+			<nav class="brand-nav">
+				<ul>
+					<li>
+						<span class="brand"><a href="https://thecb4.io"><img alt class="social-icon social-icon-about" src/></a></span>
+					</li>
+					<li>
+						<span class="brand"><a href="https://twitter.com/_thecb4"><img alt class="social-icon social-icon-twitter" src/></a></span>
+					</li>
+					<li>
+						<span class="brand"><a href="https://github.com/thecb4/blanket"><img alt class="social-icon social-icon-github" src/></a></span>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<nav class="main-nav">
 			<ul>
 				<li>
-					<h1>
-						Blanket
-					</h1>
-				</li>
-				<li>
-					<h1>
+					<h2>
 						<a href="#readme">README</a>
-					</h1>
+					</h2>
 				</li>
 				<li>
-					<h1>
+					<h2>
 						Types
-					</h1>
+					</h2>
 					<ul>
 						<li>
 							<a href="#Blanket">Blanket</a>
@@ -137,7 +237,7 @@ footer {
 			</ul>
 		</nav>
 		<main>
-			<section id="readme">
+			<section class="top-level-section" id="readme">
 				<!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <h2>Display Code Coverage data in a lovely format</h2>
@@ -210,10 +310,10 @@ footer {
 </ul>
 
 			</section>
-			<section id="Blanket">
-				<h1>
+			<section class="top-level-section" id="Blanket">
+				<h2>
 					Blanket
-				</h1>
+				</h2>
 				<div>
 					
 					<pre>
@@ -239,7 +339,7 @@ footer {
 						</h2>
 					</header>
 					<p>
-						`Blanket.Blanket.Datum`, `Blanket.Blanket.Datum.File`, `Blanket.Blanket.Datum.File.Segment.Totals`, `Blanket.Blanket.Datum.File.Segment.Totals.Functions.Function`, `Blanket.Blanket.Datum.File.Segment`, `Blanket.Blanket.Datum.File.Segment.Totals.Functions`
+						`Blanket.Blanket.Datum`, `Blanket.Blanket.Datum.File.Segment.Totals`, `Blanket.Blanket.Datum.File.Segment.Totals.Functions`, `Blanket.Blanket.Datum.File.Segment.Totals.Functions.Function`, `Blanket.Blanket.Datum.File.Segment`, `Blanket.Blanket.Datum.File`
 					</p>
 				</section>
 				<div>
@@ -275,7 +375,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">public init(contentsOfFile path: String) throws</code>
+								<code class="swift">public init(from decoder: Decoder) throws</code>
 							</pre>
 							
 							
@@ -283,7 +383,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">public init(from decoder: Decoder) throws</code>
+								<code class="swift">public init(contentsOfFile path: String) throws</code>
 							</pre>
 							
 							
@@ -313,7 +413,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">var summary: [SummaryItem]</code>
+								<code class="swift">let functions: Functions</code>
 							</pre>
 							
 							
@@ -321,39 +421,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let percent: Double</code>
-							</pre>
-							
-							
-						</div>
-						<div>
-							
-							<pre>
-								<code class="swift">let filename: String</code>
-							</pre>
-							
-							
-						</div>
-						<div>
-							
-							<pre>
-								<code class="swift">var sourcePath = "Sources"</code>
-							</pre>
-							
-							
-						</div>
-						<div>
-							
-							<pre>
-								<code class="swift">let instantiations: Functions</code>
-							</pre>
-							
-							
-						</div>
-						<div>
-							
-							<pre>
-								<code class="swift">let name: String</code>
+								<code class="swift">let count: Int</code>
 							</pre>
 							
 							
@@ -369,7 +437,15 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let expansions: [String]</code>
+								<code class="swift">let filename: String</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let instantiations: Functions</code>
 							</pre>
 							
 							
@@ -385,7 +461,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let functions: Functions</code>
+								<code class="swift">var sourcePath = "Sources"</code>
 							</pre>
 							
 							
@@ -393,7 +469,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let notcovered: Int?</code>
+								<code class="swift">let filenames: [String]</code>
 							</pre>
 							
 							
@@ -417,47 +493,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let covered: Int</code>
-							</pre>
-							
-							
-						</div>
-						<div>
-							
-							<pre>
-								<code class="swift">let files: [File]</code>
-							</pre>
-							
-							
-						</div>
-						<div>
-							
-							<pre>
-								<code class="swift">let filenames: [String]</code>
-							</pre>
-							
-							
-						</div>
-						<div>
-							
-							<pre>
-								<code class="swift">let regions: [[Int]]</code>
-							</pre>
-							
-							
-						</div>
-						<div>
-							
-							<pre>
-								<code class="swift">let totals: Totals</code>
-							</pre>
-							
-							
-						</div>
-						<div>
-							
-							<pre>
-								<code class="swift">let type: String</code>
+								<code class="swift">let summary: Totals</code>
 							</pre>
 							
 							
@@ -473,7 +509,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let count: Int</code>
+								<code class="swift">var summary: [SummaryItem]</code>
 							</pre>
 							
 							
@@ -481,7 +517,71 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let summary: Totals</code>
+								<code class="swift">let regions: Functions</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let name: String</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let files: [File]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let regions: [[Int]]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let notcovered: Int?</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let percent: Double</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let type: String</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let covered: Int</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
+								<code class="swift">let totals: Totals</code>
 							</pre>
 							
 							
@@ -497,7 +597,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let regions: Functions</code>
+								<code class="swift">let expansions: [String]</code>
 							</pre>
 							
 							
@@ -505,10 +605,10 @@ footer {
 					</section>
 				</div>
 			</section>
-			<section id="CLI">
-				<h1>
+			<section class="top-level-section" id="CLI">
+				<h2>
 					CLI
-				</h1>
+				</h2>
 				<div>
 					
 					<pre>
@@ -592,10 +692,10 @@ footer {
 					</section>
 				</div>
 			</section>
-			<section id="Blanket.Blanket.Datum">
-				<h1>
+			<section class="top-level-section" id="Blanket.Blanket.Datum">
+				<h2>
 					Blanket.Blanket.Datum
-				</h1>
+				</h2>
 				<div>
 					
 					<pre>
@@ -634,7 +734,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let functions: [Function]</code>
+								<code class="swift">let totals: Totals</code>
 							</pre>
 							
 							
@@ -642,7 +742,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let totals: Totals</code>
+								<code class="swift">let functions: [Function]</code>
 							</pre>
 							
 							
@@ -658,10 +758,10 @@ footer {
 					</section>
 				</div>
 			</section>
-			<section id="Blanket.Blanket.Datum.File">
-				<h1>
+			<section class="top-level-section" id="Blanket.Blanket.Datum.File">
+				<h2>
 					Blanket.Blanket.Datum.File
-				</h1>
+				</h2>
 				<div>
 					
 					<pre>
@@ -716,7 +816,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let summary: Totals</code>
+								<code class="swift">let segments: [[Segment]]</code>
 							</pre>
 							
 							
@@ -724,7 +824,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let segments: [[Segment]]</code>
+								<code class="swift">let summary: Totals</code>
 							</pre>
 							
 							
@@ -732,10 +832,10 @@ footer {
 					</section>
 				</div>
 			</section>
-			<section id="Blanket.Blanket.Datum.File.Segment.Totals.Functions.Function">
-				<h1>
+			<section class="top-level-section" id="Blanket.Blanket.Datum.File.Segment.Totals.Functions.Function">
+				<h2>
 					Blanket.Blanket.Datum.File.Segment.Totals.Functions.Function
-				</h1>
+				</h2>
 				<div>
 					
 					<pre>
@@ -774,6 +874,14 @@ footer {
 						<div>
 							
 							<pre>
+								<code class="swift">let regions: [[Int]]</code>
+							</pre>
+							
+							
+						</div>
+						<div>
+							
+							<pre>
 								<code class="swift">let count: Int</code>
 							</pre>
 							
@@ -790,14 +898,6 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let regions: [[Int]]</code>
-							</pre>
-							
-							
-						</div>
-						<div>
-							
-							<pre>
 								<code class="swift">let filenames: [String]</code>
 							</pre>
 							
@@ -806,10 +906,10 @@ footer {
 					</section>
 				</div>
 			</section>
-			<section id="Blanket.Blanket.Datum.File.Segment.Totals.Functions">
-				<h1>
+			<section class="top-level-section" id="Blanket.Blanket.Datum.File.Segment.Totals.Functions">
+				<h2>
 					Blanket.Blanket.Datum.File.Segment.Totals.Functions
-				</h1>
+				</h2>
 				<div>
 					
 					<pre>
@@ -848,7 +948,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let count: Int</code>
+								<code class="swift">let percent: Double</code>
 							</pre>
 							
 							
@@ -864,7 +964,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let covered: Int</code>
+								<code class="swift">let count: Int</code>
 							</pre>
 							
 							
@@ -872,7 +972,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let percent: Double</code>
+								<code class="swift">let covered: Int</code>
 							</pre>
 							
 							
@@ -880,10 +980,10 @@ footer {
 					</section>
 				</div>
 			</section>
-			<section id="Blanket.Blanket.Datum.File.Segment">
-				<h1>
+			<section class="top-level-section" id="Blanket.Blanket.Datum.File.Segment">
+				<h2>
 					Blanket.Blanket.Datum.File.Segment
-				</h1>
+				</h2>
 				<div>
 					
 					<pre>
@@ -968,10 +1068,10 @@ footer {
 					</section>
 				</div>
 			</section>
-			<section id="SummaryItem">
-				<h1>
+			<section class="top-level-section" id="SummaryItem">
+				<h2>
 					SummaryItem
-				</h1>
+				</h2>
 				<div>
 					
 					<pre>
@@ -1010,7 +1110,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">var summary: [SummaryItem]</code>
+								<code class="swift">var sourcePath = "Sources"</code>
 							</pre>
 							
 							
@@ -1018,7 +1118,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">var sourcePath = "Sources"</code>
+								<code class="swift">var summary: [SummaryItem]</code>
 							</pre>
 							
 							
@@ -1026,10 +1126,10 @@ footer {
 					</section>
 				</div>
 			</section>
-			<section id="Blanket.Blanket.Datum.File.Segment.Totals">
-				<h1>
+			<section class="top-level-section" id="Blanket.Blanket.Datum.File.Segment.Totals">
+				<h2>
 					Blanket.Blanket.Datum.File.Segment.Totals
-				</h1>
+				</h2>
 				<div>
 					
 					<pre>
@@ -1068,7 +1168,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let lines: Functions</code>
+								<code class="swift">let instantiations: Functions</code>
 							</pre>
 							
 							
@@ -1084,7 +1184,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let instantiations: Functions</code>
+								<code class="swift">let regions: Functions</code>
 							</pre>
 							
 							
@@ -1092,7 +1192,7 @@ footer {
 						<div>
 							
 							<pre>
-								<code class="swift">let regions: Functions</code>
+								<code class="swift">let lines: Functions</code>
 							</pre>
 							
 							
@@ -1100,10 +1200,10 @@ footer {
 					</section>
 				</div>
 			</section>
-			<section id="Transformer">
-				<h1>
+			<section class="top-level-section" id="Transformer">
+				<h2>
 					Transformer
-				</h1>
+				</h2>
 				<div>
 					
 					<pre>
@@ -1167,11 +1267,13 @@ footer {
 			</section>
 		</main>
 		<footer>
-			&copy; 2020. Generated by swift-doc on Friday, 2020-March-6 (10)
+			<span>&copy; 2020  All rights reserved.</span>
+			<span>Last updated on Sunday, March 8, 2020, 14:04 EDT</span>
+			<span>Generated by swift-doc, a community project. Icons by <a href="https://icons8.com">Icons8</a></span>
 		</footer>
 		<script type="text/javascript">
 			let mainNavLinks = document.querySelectorAll("nav ul li a");
-let mainSections = document.querySelectorAll("main section");
+let mainSections = document.querySelectorAll(".top-level-section");
 
 let lastId;
 let cur = [];

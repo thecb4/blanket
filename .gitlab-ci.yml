@@ -33,11 +33,11 @@ pages:
     - swift run mint install yonaskolb/mint
     - cd $WORKDIR
     - mint install thecb4/swift-doc@master
-    - swift doc ./Sources --type html --output docs --module-name Blanket
+    - swift doc ./Sources --output docs/ --type html --module-name blanket --author "Cavelle Benjamin" --author-url https://thecb4.io --twitter-handle _thecb4 --git-repository https://github.com/thecb4/blanket
     - mkdir public
     - mkdir public/Resources
-    - mv docs/index.html public/index.html
-    - mv Resources/logo.png public/Resoures/logo.png
+    - cp docs/index.html public/index.html
+    - cp Resources/logo.png public/Resources/logo.png
   artifacts:
     paths:
     - public
