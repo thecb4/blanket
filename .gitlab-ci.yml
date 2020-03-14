@@ -61,6 +61,8 @@ wiki:
     - rm -rf **/*.md
     - cd ..
     - swift doc ./Sources --output wiki
+    - cd wiki
+    - git add . && git commit -m "update documentation" && git push orign master
   artifacts:
     paths:
     - wiki
