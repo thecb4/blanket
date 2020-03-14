@@ -20,7 +20,31 @@ spm_514_xenial:
   only:
     - master
 
-pages:
+# pages:
+#   image:
+#     name: swift:5.1.4-xenial
+#   stage: docs
+#   dependencies:
+#     - spm_514_xenial
+#   script:
+#     - export WORKDIR=$PWD
+#     - git clone https://github.com/yonaskolb/Mint.git /tmp/Mint
+#     - cd /tmp/Mint
+#     - swift run mint install yonaskolb/mint
+#     - cd $WORKDIR
+#     - mint install thecb4/swift-doc@master
+#     - swift doc ./Sources --output docs/ --type html --module-name blanket --author "Cavelle Benjamin" --author-url https://thecb4.io --twitter-handle _thecb4 --git-repository https://github.com/thecb4/blanket
+#     - mkdir public
+#     - mkdir public/Resources
+#     - cp docs/index.html public/index.html
+#     - cp Resources/logo.png public/Resources/logo.png
+#   artifacts:
+#     paths:
+#     - public
+#   only:
+#     - master
+
+wiki:
   image:
     name: swift:5.1.4-xenial
   stage: docs
@@ -33,13 +57,12 @@ pages:
     - swift run mint install yonaskolb/mint
     - cd $WORKDIR
     - mint install thecb4/swift-doc@master
-    - swift doc ./Sources --output docs/ --type html --module-name blanket --author "Cavelle Benjamin" --author-url https://thecb4.io --twitter-handle _thecb4 --git-repository https://github.com/thecb4/blanket
-    - mkdir public
-    - mkdir public/Resources
-    - cp docs/index.html public/index.html
-    - cp Resources/logo.png public/Resources/logo.png
+    - cd wiki
+    - rm -rf **/*.md
+    - cd ..
+    - swift doc ./Sources --output wiki
   artifacts:
     paths:
-    - public
+    - wiki
   only:
     - master
