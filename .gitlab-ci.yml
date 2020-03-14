@@ -57,12 +57,17 @@ wiki:
     - swift run mint install yonaskolb/mint
     - cd $WORKDIR
     - mint install thecb4/swift-doc@master
+    - git rm --cached wiki
+    - git add wiki
     - cd wiki
     - rm -rf **/*.md
     - cd ..
     - swift doc ./Sources --output wiki
+    - git submodule foreach --recursive deinit -f --all -- wiki
+    - git add --all -f
     - cd wiki
-    - git add . && git commit -m "update documentation" && git push orign master
+    - git commit -m "Update docs"
+    - git push origin master
   artifacts:
     paths:
     - wiki
