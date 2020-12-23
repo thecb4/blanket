@@ -63,7 +63,7 @@ pages:
     - cd /tmp/Mint
     - swift run mint install yonaskolb/mint
     - cd $WORKDIR
-    - export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \
+    - export PATH=$PATH:/usr/bin/ DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \
       apt-get -q update && \
       apt-get -q install -y \
       libxml2-dev
