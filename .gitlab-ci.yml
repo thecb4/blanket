@@ -63,6 +63,10 @@ pages:
     - cd /tmp/Mint
     - swift run mint install yonaskolb/mint
     - cd $WORKDIR
+    - export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \
+      apt-get -q update && \
+      apt-get -q install -y \
+      libxml2-dev
     - mint install SwiftDocOrg/swift-doc@master
     #- swift doc ./Sources --output docs/ --type html --module-name blanket --author "Cavelle Benjamin" --author-url https://thecb4.io --twitter-handle _thecb4 --git-repository https://github.com/thecb4/blanket
     - swift doc generate ./Sources --module-name Blanket --output docs --format html
