@@ -16,7 +16,7 @@ swift_5_3_focal:
   script:
     - swift test --enable-test-discovery --enable-code-coverage --filter "^(?!.*MacOS).*$"
   only:
-    - master
+    - main
 
 swift_5_3_bionic:
   image:
@@ -26,7 +26,7 @@ swift_5_3_bionic:
   script:
     - swift test --enable-test-discovery --enable-code-coverage --filter "^(?!.*MacOS).*$"
   only:
-    - master
+    - main
 
 swift_5_2_focal:
   image:
@@ -36,7 +36,7 @@ swift_5_2_focal:
   script:
     - swift test --enable-test-discovery --enable-code-coverage --filter "^(?!.*MacOS).*$"
   only:
-    - master
+    - main
 
 swift_5_2_bionic:
   image:
@@ -46,7 +46,7 @@ swift_5_2_bionic:
   script:
     - swift test --enable-test-discovery --enable-code-coverage --filter "^(?!.*MacOS).*$"
   only:
-    - master
+    - main
 
 pages:
   image:
@@ -63,7 +63,7 @@ pages:
     - cd /tmp/Mint
     - swift run mint install yonaskolb/mint
     - cd $WORKDIR
-    - mint install thecb4/swift-doc@master
+    - mint install thecb4/swift-doc@main
     - swift doc ./Sources --output docs/ --type html --module-name blanket --author "Cavelle Benjamin" --author-url https://thecb4.io --twitter-handle _thecb4 --git-repository https://github.com/thecb4/blanket
     - mkdir public
     - mkdir public/Resources
@@ -73,7 +73,7 @@ pages:
     paths:
     - public
   only:
-    - master
+    - main
 
 # wiki:
 #   image:
@@ -87,7 +87,7 @@ pages:
 #     - cd /tmp/Mint
 #     - swift run mint install yonaskolb/mint
 #     - cd $WORKDIR
-#     - mint install thecb4/swift-doc@master
+#     - mint install thecb4/swift-doc@main
 #     - git rm --cached wiki
 #     - git add wiki
 #     - cd wiki
@@ -98,9 +98,9 @@ pages:
 #     - git add --all -f
 #     - cd wiki
 #     - git commit -m "Update docs"
-#     - git push origin master
+#     - git push origin main
 #   artifacts:
 #     paths:
 #     - wiki
 #   only:
-#     - master
+#     - main
