@@ -5,14 +5,14 @@
         "package": "swift-argument-parser",
         "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
         "state": {
-          "branch": "master",
-          "revision": "8d952c8513a1b1d215c4cf821c0309abb5cf5966",
-          "version": null
+          "branch": null,
+          "revision": "92646c0cdbaca076c8d3d0207891785b3379cbff",
+          "version": "0.3.1"
         }
       },
       {
         "package": "TextTable",
-        "repositoryURL": "https://github.com/cfilipov/TextTable.git",
+        "repositoryURL": "https://github.com/thecb4/TextTable.git",
         "state": {
           "branch": "master",
           "revision": "e03289289155b4e7aa565e32862f9cb42140596a",
