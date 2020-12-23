@@ -8,24 +8,55 @@ stages:
   - build-test
   - docs
 
-spm_514_xenial:
+swift_5_3_focal:
   image:
-    name: swift:5.1.4-xenial
+    name: swift:5.3-focal
     entrypoint: [""]
   stage: build-test
   script:
-    - swift package update
-    - swift test --generate-linuxmain
-    - swift test --enable-code-coverage --filter "^(?!.*MacOS).*$"
+    - swift test --enable-test-discovery --enable-code-coverage --filter "^(?!.*MacOS).*$"
+  only:
+    - master
+
+swift_5_3_bionic:
+  image:
+    name: swift:5.2-bionic
+    entrypoint: [""]
+  stage: build-test
+  script:
+    - swift test --enable-test-discovery --enable-code-coverage --filter "^(?!.*MacOS).*$"
+  only:
+    - master
+
+swift_5_2_focal:
+  image:
+    name: swift:5.2-focal
+    entrypoint: [""]
+  stage: build-test
+  script:
+    - swift test --enable-test-discovery --enable-code-coverage --filter "^(?!.*MacOS).*$"
+  only:
+    - master
+
+swift_5_2_bionic:
+  image:
+    name: swift:5.2-bionic
+    entrypoint: [""]
+  stage: build-test
+  script:
+    - swift test --enable-test-discovery --enable-code-coverage --filter "^(?!.*MacOS).*$"
   only:
     - master
 
 pages:
   image:
-    name: swift:5.1.4-xenial
+    name: swift:5.3-focal
   stage: docs
   dependencies:
-    - spm_514_xenial
+    - swift_5_3_focal
+    - swift_5_3_bionic
+    - swift_5_2_focal
+    - swift_5_2_bionic
   script:
     - export WORKDIR=$PWD
     - git clone https://github.com/yonaskolb/Mint.git /tmp/Mint
