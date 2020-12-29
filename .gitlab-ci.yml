@@ -58,8 +58,9 @@ pages:
     - swift_5_2_focal
     - swift_5_2_bionic
   before_script:
-    - apt-get update
-    - apt-get install build-essential
+    - export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
+    - apt-get -q update
+    - apt-get -q install -y build-essential
   script:
     - export WORKDIR=$PWD
     - git clone https://github.com/SwiftDocOrg/swift-doc /tmp/swift-doc
