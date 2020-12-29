@@ -1,10 +1,10 @@
 <div align="center">
     <img src="Resources/logo.png" width="200" max-width="90%" alt="Blanket"/>
     <h1 align="center">Blanket</h1>
-    <a href="https://gitlab.com/thecb4/shellkit/-/commits/master">
-      <img src="https://gitlab.com/thecb4/shellkit/badges/master/pipeline.svg" />
+    <a href="https://gitlab.com/thecb4/blanket/-/commits/main">
+      <img src="https://gitlab.com/thecb4/blanket/badges/mainmaster/pipeline.svg" />
     </a>
-    <img src="https://img.shields.io/badge/Swift-5.1-orange.svg" />
+    <img src="https://img.shields.io/badge/Swift-5.2-orange.svg" />
     <img src="https://img.shields.io/badge/macOS-%3E%3D%2010.13-blue" />
     <img src="https://img.shields.io/badge/platform-macOS%20%7C%20linux-blue" />
     <a href="https://twitter.com/_thecb4">
@@ -31,7 +31,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Swift 5.1
+Swift 5.2
 
 ### Installing
 
