@@ -59,7 +59,7 @@ pages:
     - swift_5_2_bionic
   script:
     - export WORKDIR=$PWD
-    - git clone git clone https://github.com/SwiftDocOrg/swift-doc /tmp/swift-doc
+    - git clone https://github.com/SwiftDocOrg/swift-doc /tmp/swift-doc
     - cd /tmp//tmp/swift-doc
     - make install
     - cd $WORKDIR
