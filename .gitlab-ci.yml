@@ -60,7 +60,7 @@ pages:
   script:
     - export WORKDIR=$PWD
     - git clone https://github.com/SwiftDocOrg/swift-doc /tmp/swift-doc
-    - cd /tmp//tmp/swift-doc
+    - cd /tmp/swift-doc
     - make install
     - cd $WORKDIR
     #- swift doc ./Sources --output docs/ --type html --module-name blanket --author "Cavelle Benjamin" --author-url https://thecb4.io --twitter-handle _thecb4 --git-repository https://github.com/thecb4/blanket
