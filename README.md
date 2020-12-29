@@ -2,7 +2,7 @@
     <img src="Resources/logo.png" width="200" max-width="90%" alt="Blanket"/>
     <h1 align="center">Blanket</h1>
     <a href="https://gitlab.com/thecb4/blanket/-/commits/main">
-      <img src="https://gitlab.com/thecb4/blanket/badges/mainmaster/pipeline.svg" />
+      <img src="https://gitlab.com/thecb4/blanket/badges/main/pipeline.svg" />
     </a>
     <img src="https://img.shields.io/badge/Swift-5.2-orange.svg" />
     <img src="https://img.shields.io/badge/macOS-%3E%3D%2010.13-blue" />
