@@ -57,6 +57,8 @@ pages:
     - swift_5_3_bionic
     - swift_5_2_focal
     - swift_5_2_bionic
+  before_script:
+    - apt-get install make
   script:
     - export WORKDIR=$PWD
     - git clone https://github.com/SwiftDocOrg/swift-doc /tmp/swift-doc
